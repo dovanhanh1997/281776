@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="myCanvas" height="500px" width="700px" style="border: 1px solid red"></canvas>
+<p id="view"></p>
+<script>
+    let Rectangle = function (coordiX, coordiY, width, height) {
+        this.width = width;
+        this.height = height;
+        this.coordiX = coordiX;
+        this.coordiY = coordiY;
+        this.getArea = function () {
+            return width * height;
+        };
+        this.getPerimeter = function () {
+            return (width + height) * 2;
+        };
+        this.draw = function () {
+            let c = document.getElementById("myCanvas");
+            let ctx = c.getContext("2d");
+            ctx.rect(this.coordiX, this.coordiY, this.width, this.height);
+            ctx.stroke();
+        };
+        this.setSize = function (newCoordiX, newCoordiY, newWidth, newHeight) {
+            this.coordiX = newCoordiX;
+            this.coordiY = newCoordiY;
+            this.width = newWidth;
+            this.height = newHeight;
+        }
+    };
+    let rectangle = new Rectangle(60, 70, 300, 100);
+    rectangle.draw();
+    document.getElementById("view").innerHTML = "Diện tích là: " + rectangle.getArea() + "<br>Chu vi là: " + rectangle.getPerimeter()+"<br>";
+    rectangle.setSize(70, 60, 200, 100);
+    rectangle.draw();
+    document.getElementById("view").innerHTML += "Diện tích là: " + rectangle.getArea() + "<br>Chu vi là: " + rectangle.getPerimeter();
+
+
+</script>
+</body>
+</html>
